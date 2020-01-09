@@ -41,9 +41,9 @@ document.title += ` ${gasyYear}`;
  */
 function formatMessage(message) {
     if (message) {
-        return message.replace('{{YEAR}}', gasyYear)
+        return message
     } else {
-        return `Bonne année ${gasyYear} !`
+        return `happy new year`
     }
 }
 
@@ -103,9 +103,17 @@ function checkGithub(link) {
     }
 }
 
-// Fetch json file
-$.getJSON('USER.json', function (elements) {
-    elements.forEach(function (nous, i) {
+const elements = [
+    {
+      "name": '张老师',
+      "image": "https://vip1.loli.net/2020/01/09/6ybKMltXUPJ1vIw.jpg",
+      "message":"2020 Happy New Year",
+      "username": "Trouble404"
+    }
+]
+
+function makeimage(elements) {
+  elements.forEach(function (nous, i) {
         document.getElementById('carousel-indicators').innerHTML += `
               <li data-target="#quote-carousel" data-slide-to="${i}" class="${isActive(i)}" title="${checkName(nous.name)}">
                 <img src="${checkImage(nous.image)}" alt="">
@@ -131,5 +139,6 @@ $.getJSON('USER.json', function (elements) {
                     </div>
                </blockquote>
             </div>`
-    })
-})
+  })
+}
+$(document).ready(() => makeimage(elements))
